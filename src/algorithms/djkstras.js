@@ -5,9 +5,10 @@ export function dijkstra(grid,startNode,finishNode){
  startNode.distance=0;
  // all nodes will be set as unvisited
  const unvisitedNodes=getAllNodes(grid)
-
+ console.log("unvi",unvisitedNodes.length)
  // until unvisited nodes length becomes 0
- while(!!unvisitedNodes.length){
+ while(unvisitedNodes.length>0){
+    console.log("log1")
     // nodes will be sorted according to their distance
     sortNodesByDistance(unvisitedNodes)
  
@@ -15,13 +16,17 @@ export function dijkstra(grid,startNode,finishNode){
     // closest node will be the first element of the unvisited nodes
     const closestNode=unvisitedNodes.shift()
     if(closestNode.isWall) continue
-    if(closestNode.distance===Infinity) return visitedNodesInOrder
+   // if(closestNode.distance===Infinity) return visitedNodesInOrder
+    console.log("entered loop")
     // mark the closest node as visited
     closestNode.isVisited=true
     // add the closestnode to the visitedNode array
     visitedNodesInOrder.push(closestNode)
+    
+   // console.log("vi-order",visitedNodesInOrder)
     // if it reaches the finishing node return all visited nodes in order
     if(closestNode===finishNode){
+    console.log("vi-order",visitedNodesInOrder)
     return visitedNodesInOrder
     console.log("finished")
     } 
